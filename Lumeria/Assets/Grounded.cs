@@ -23,7 +23,7 @@ public class Grounded : MonoBehaviour {
     {
         if (collision.gameObject.layer == 3)
         {
-            player.isGrounded = false; //o personagem não esta no chao
+            player.isGrounded = false; //o personagem está no ar
         }
     }
 }
