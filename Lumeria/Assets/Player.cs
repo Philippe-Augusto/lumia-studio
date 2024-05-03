@@ -35,17 +35,20 @@ public class Player : MonoBehaviour
         Jump();
     }
 
-    private void Move () {        
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+    private void Move () {
+        float inputAxis = Input.GetAxis("Horizontal");
+        Vector3 movement = new Vector3(inputAxis, 0f, 0f);
         transform.position += movement * Time.deltaTime * moveSpeed;
 
-        /*if (inputAxis > 0) {
+
+        if (inputAxis > 0) {
             transform.eulerAngles = new Vector2(0f, 0f);
         }
 
         else if (inputAxis < 0){
             transform.eulerAngles = new Vector2(0f, 180f);
-        }*/
+        }
+        //Flip();
     }    
 
     private void Jump () {
