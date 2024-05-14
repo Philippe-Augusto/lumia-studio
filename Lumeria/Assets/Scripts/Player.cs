@@ -1,36 +1,40 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public float jumpForce;
-
     public float moveSpeed;
-
     public bool isGrounded;
-
-    private bool isFacingRight = true;
     public bool isJumping;
-
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
-
     private float jumpBufferTime = 0.2f;
     private float jumpBufferCounter;
 
-
+    public Animator animator;
 
     private Rigidbody2D rig;
 
     private void Start ()
     {
-        rig = GetComponent<Rigidbody2D>();        
+        rig = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();        
     }	
 	
     private void Update()
     {
+        if (Input.GetAxis("Horizontal") != 0) {
+            //esta andando
+            animator.SetBool("taAndando", true);
+        } else {
+            //esta parado
+            animator.SetBool("taAndando", false);
+        }
+        
         Move();
         Jump();
     }
@@ -52,6 +56,7 @@ public class Player : MonoBehaviour
     }    
 
     private void Jump () {
+
         //Coyote time
         if (isGrounded)
         {
@@ -88,7 +93,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Flip()
+    private IEnumerator JumpCooldown()
+    {
+        isJumping = true;
+        yield return new WaitForSeconds(0.4f);
+        isJumping = false;
+    }
+
+    /*private void Flip()
     {
         float inputAxis = Input.GetAxis("Horizontal");
         if (isFacingRight && inputAxis < 0f || !isFacingRight && inputAxis > 0f)
@@ -98,12 +110,5 @@ public class Player : MonoBehaviour
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
-    }
-
-    private IEnumerator JumpCooldown()
-    {
-        isJumping = true;
-        yield return new WaitForSeconds(0.4f);
-        isJumping = false;
-    }
+    }*/
 }
