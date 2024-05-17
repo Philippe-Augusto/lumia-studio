@@ -203,6 +203,7 @@ MonoBehaviour:
   moveSpeed: 8
   isGrounded: 0
   isJumping: 0
+  animator: {fileID: 0}
 --- !u!61 &199728759
 BoxCollider2D:
   m_ObjectHideFlags: 0
