@@ -21,8 +21,7 @@ public class Player : MonoBehaviour
 
     private void Start ()
     {
-        rig = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();        
+        rig = GetComponent<Rigidbody2D>();    
     }	
 	
     private void Update()
