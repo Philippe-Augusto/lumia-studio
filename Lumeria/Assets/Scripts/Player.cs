@@ -79,6 +79,7 @@ public class Player : MonoBehaviour
 
         if (jumpBufferCounter > 0f && coyoteTimeCounter > 0 && !isJumping) {
             rig.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            animator.SetBool("taPulando", true);
 
             jumpBufferCounter = 0f;
 
@@ -89,6 +90,10 @@ public class Player : MonoBehaviour
         {
             rig.velocity = new Vector2(rig.velocity.x, rig.velocity.y * 0.5f);
             coyoteTimeCounter = 0f;
+        }
+
+        if (!isJumping && rig.velocity.y == 0) {
+            animator.SetBool("taPulando", false);
         }
     }
 
