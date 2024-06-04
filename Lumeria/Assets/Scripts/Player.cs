@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public int deathZone = 3;
     public float jumpForce;
     public float moveSpeed;
     public bool isGrounded;
@@ -29,6 +31,16 @@ public class Player : MonoBehaviour
         } else {
             //esta parado
             animator.SetBool("taAndando", false);
+        }
+
+        if (Input.GetMouseButton(0)) {
+            animator.SetBool("taAtacando", true);
+        } else {
+            animator.SetBool("taAtacando", false);
+        }
+
+        if (transform.position.y <= deathZone) {
+            Die();
         }
         
         Move();
@@ -91,6 +103,14 @@ public class Player : MonoBehaviour
         if (!isJumping && rig.velocity.y == 0) {
             animator.SetBool("taPulando", false);
         }
+    }
+
+    public void Die() {
+        // Adicione aqui o que deve acontecer quando o personagem morre
+        Debug.Log("Player morreu!");
+
+        // Exemplo: reiniciar a cena atual
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private IEnumerator JumpCooldown()

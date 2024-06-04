@@ -12,6 +12,7 @@ public class HealthSystem : MonoBehaviour
     public Image[] heart;
     public Sprite cheio;
     public Sprite vazio;
+    public Player player;
     void Start()
     {
         health = maxHealth;
@@ -49,8 +50,12 @@ public class HealthSystem : MonoBehaviour
 
     void DeadState() {
         if (health <= 0) {
+            player.Die();
+        }
+
+        if (player.transform.position.y <= 5) {
             GetComponent<Player>().enabled = false;
-            Destroy(gameObject, 1.0f);
+            Destroy(gameObject);
         }
     }
 }
