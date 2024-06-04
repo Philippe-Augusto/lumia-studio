@@ -9,7 +9,6 @@ public class HealthSystem : MonoBehaviour
 {    
     public int maxHealth;
     public int health;
-
     public Image[] heart;
     public Sprite cheio;
     public Sprite vazio;
