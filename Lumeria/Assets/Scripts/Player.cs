@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public int pontosDeMagia;
     public int deathZone = 3;
     public float jumpForce;
     public float moveSpeed;
@@ -111,6 +112,11 @@ public class Player : MonoBehaviour
 
         // Exemplo: reiniciar a cena atual
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ColetarPontosDeMagia() {
+        Debug.Log("Ponto de Magia Coletado!");
+        pontosDeMagia++;
     }
 
     private IEnumerator JumpCooldown()
