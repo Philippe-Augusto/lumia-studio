@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class HealthSystem : MonoBehaviour
 {    
     public int maxHealth;
-
     public int health;
+
+    public Image[] hearth;
+    public Sprite cheio;
+    public Sprite vazio;
     void Start()
     {
         health = maxHealth;
