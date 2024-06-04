@@ -14,11 +14,8 @@ public class Player : MonoBehaviour
     private float coyoteTimeCounter;
     private float jumpBufferTime = 0.2f;
     private float jumpBufferCounter;
-
     public Animator animator;
-
     private Rigidbody2D rig;
-
     private void Start ()
     {
         rig = GetComponent<Rigidbody2D>();    

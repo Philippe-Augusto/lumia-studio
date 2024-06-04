@@ -9,7 +9,6 @@ public class Grounded : MonoBehaviour {
 
     void Start () {
         player = gameObject.transform.parent.gameObject.GetComponent<Player>();
-
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
