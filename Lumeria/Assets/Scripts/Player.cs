@@ -48,7 +48,6 @@ public class Player : MonoBehaviour
         else if (inputAxis < 0){
             transform.eulerAngles = new Vector2(0f, 180f);
         }
-        //Flip();
     }    
 
     private void Jump () {
@@ -100,16 +99,4 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         isJumping = false;
     }
-
-    /*private void Flip()
-    {
-        float inputAxis = Input.GetAxis("Horizontal");
-        if (isFacingRight && inputAxis < 0f || !isFacingRight && inputAxis > 0f)
-        {
-            Vector3 localScale = transform.localScale;
-            isFacingRight = !isFacingRight;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
-        }
-    }*/
 }
