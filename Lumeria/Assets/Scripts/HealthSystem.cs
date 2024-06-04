@@ -22,6 +22,7 @@ public class HealthSystem : MonoBehaviour
     void Update()
     {
         HealthLogic();
+        DeadState();
     }
 
     void HealthLogic() {
@@ -44,6 +45,13 @@ public class HealthSystem : MonoBehaviour
             else {
                 heart[i].enabled = false;
             }
+        }
+    }
+
+    void DeadState() {
+        if (health <= 0) {
+            GetComponent<Player>().enabled = false;
+            Destroy(gameObject, 1.0f);
         }
     }
 }
