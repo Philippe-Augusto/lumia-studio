@@ -19,9 +19,16 @@ public class Player : MonoBehaviour
     private float jumpBufferCounter;
     public Animator animator;
     private Rigidbody2D rig;
+
+    private bool canMove;
+
+    public float glideForce = 2.0f; // A força de planar
+    public float glideGravityScale = 1.5f; // Escala de gravidade durante o planar
+    private float originalGravityScale;
     private void Start ()
     {
         rig = GetComponent<Rigidbody2D>();    
+        originalGravityScale = rig.gravityScale;
     }	
 	
     private void Update()
@@ -101,9 +108,26 @@ public class Player : MonoBehaviour
             coyoteTimeCounter = 0f;
         }
 
+        if (Input.GetButton("Jump") && rig.velocity.y < 0f && !isGrounded) { //ela esta no ar, e esta caindo
+            Glide();
+        } else {
+            StopGliding();
+        }
+
         if (!isJumping && rig.velocity.y == 0) {
             animator.SetBool("taPulando", false);
         }
+    }
+
+    void Glide()
+    {
+        rig.AddForce(Vector2.up * glideForce, ForceMode2D.Force);
+        rig.gravityScale = glideGravityScale; // Reduzir a gravidade
+    }
+
+    void StopGliding()
+    {
+        rig.gravityScale = originalGravityScale; // Restaurar a gravidade original
     }
 
     public void Die() {

@@ -1,29 +1,29 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grounded : MonoBehaviour {
-
+public class Grounded : MonoBehaviour
+{
     Player player;
 
-    void Start () {
+    void Start()
+    {
         player = gameObject.transform.parent.gameObject.GetComponent<Player>();
     }
-    void OnCollisionEnter2D(Collision2D collision)
+
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.layer == 3)
+        if (collider.gameObject.layer == 3) // Verifica se o collider que entrou é da layer 3 (ground)
         {
-            player.isGrounded = true; //o personagem está no chão
+            player.isGrounded = true; // O personagem está no chão
         }
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    void OnTriggerExit2D(Collider2D collider)
     {
-        if (collision.gameObject.layer == 3)
+        if (collider.gameObject.layer == 3) // Verifica se o collider que saiu é da layer 3 (ground)
         {
-            player.isGrounded = false; //o personagem está no ar
+            player.isGrounded = false; // O personagem não está mais no chão
         }
     }
 }
-
