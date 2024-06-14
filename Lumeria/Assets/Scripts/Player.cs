@@ -8,6 +8,12 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public int pontosDeMagia;
+
+    public Transform spawnPoint;
+
+    public float magicSpeed = 10f;
+
+    public GameObject magicOrb;
     public int deathZone = 3;
     public float jumpForce;
     public float moveSpeed;
@@ -20,7 +26,6 @@ public class Player : MonoBehaviour
     public Animator animator;
     private Rigidbody2D rig;
 
-    private bool canMove;
 
     public float glideForce = 2.0f; // A força de planar
     public float glideGravityScale = 1.5f; // Escala de gravidade durante o planar
@@ -43,6 +48,14 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButton(0)) {
             animator.SetBool("taAtacando", true);
+            /*GameObject magicObject = Instantiate(magicOrb, spawnPoint.position, spawnPoint.rotation);
+
+            // Adicionar força ao objeto mágico para que ele se mova
+            Rigidbody rigOrb = magicObject.GetComponent<Rigidbody>();
+            if (rigOrb != null)
+            {
+                rigOrb.velocity = spawnPoint.forward * magicSpeed;
+            }*/
         } else {
             animator.SetBool("taAtacando", false);
         }
@@ -123,11 +136,13 @@ public class Player : MonoBehaviour
     {
         rig.AddForce(Vector2.up * glideForce, ForceMode2D.Force);
         rig.gravityScale = glideGravityScale; // Reduzir a gravidade
+        animator.SetBool("taPlanando", true);
     }
 
     void StopGliding()
     {
         rig.gravityScale = originalGravityScale; // Restaurar a gravidade original
+        animator.SetBool("taPlanando", false);
     }
 
     public void Die() {
