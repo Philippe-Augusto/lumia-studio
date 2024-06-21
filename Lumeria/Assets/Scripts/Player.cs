@@ -8,12 +8,8 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public int pontosDeMagia;
-
     public Transform spawnPoint;
-
-    public float magicSpeed = 10f;
-
-    public GameObject magicOrb;
+    public MagicOrb magicOrbPrefab;
     public int deathZone = 3;
     public float jumpForce;
     public float moveSpeed;
@@ -25,11 +21,10 @@ public class Player : MonoBehaviour
     private float jumpBufferCounter;
     public Animator animator;
     private Rigidbody2D rig;
-
-
     public float glideForce = 2.0f; // A força de planar
     public float glideGravityScale = 1.5f; // Escala de gravidade durante o planar
     private float originalGravityScale;
+    private bool isAttacking = false;
     private void Start ()
     {
         rig = GetComponent<Rigidbody2D>();    
@@ -38,41 +33,30 @@ public class Player : MonoBehaviour
 	
     private void Update()
     {
-        if (Input.GetAxis("Horizontal") != 0) {
-            //esta andando
-            animator.SetBool("taAndando", true);
-        } else {
-            //esta parado
-            animator.SetBool("taAndando", false);
-        }
-
         if (Input.GetMouseButton(0)) {
-            animator.SetBool("taAtacando", true);
-            /*GameObject magicObject = Instantiate(magicOrb, spawnPoint.position, spawnPoint.rotation);
-
-            // Adicionar força ao objeto mágico para que ele se mova
-            Rigidbody rigOrb = magicObject.GetComponent<Rigidbody>();
-            if (rigOrb != null)
-            {
-                rigOrb.velocity = spawnPoint.forward * magicSpeed;
-            }*/
-        } else {
-            animator.SetBool("taAtacando", false);
+            Attack();
         }
-
         if (transform.position.y <= deathZone) {
             Die();
         }
-        
+
         Move();
         Jump();
     }
 
     private void Move () {
         float inputAxis = Input.GetAxis("Horizontal");
+
+        if (inputAxis != 0) {
+            //esta andando
+            animator.SetBool("taAndando", true);
+        } else {
+            //esta parado
+            animator.SetBool("taAndando", false);
+        }
+        
         Vector3 movement = new Vector3(inputAxis, 0f, 0f);
         transform.position += movement * Time.deltaTime * moveSpeed;
-
 
         if (inputAxis > 0) {
             transform.eulerAngles = new Vector2(0f, 0f);
@@ -158,6 +142,39 @@ public class Player : MonoBehaviour
         pontosDeMagia++;
     }
 
+    void Attack()
+    {
+        if (!isAttacking && isGrounded && pontosDeMagia > 0)
+        {
+            pontosDeMagia--;
+            isAttacking = true;
+            animator.SetBool("taAtacando", true);
+
+            // Cria a orbe mágica
+            MagicOrb magicOrb = Instantiate(magicOrbPrefab, spawnPoint.position, spawnPoint.rotation);
+
+            Vector3 direcaoLancamento;
+
+            if (transform.localScale.x > 0) {
+                direcaoLancamento = Vector3.right;
+            } else {
+                direcaoLancamento = Vector3.left;
+            }
+
+            magicOrb.SetDirection(direcaoLancamento);
+            // Define um tempo de espera antes de permitir outro ataque
+            Invoke("ResetAttack", 0.5f); // Ajuste o tempo conforme necessário
+        }
+        else if (pontosDeMagia <= 0) {
+            Debug.Log("Pontos de Magia Insuficientes");
+        }
+    }
+
+    void ResetAttack()
+    {
+        animator.SetBool("taAtacando", false);
+        isAttacking = false;
+    }
     private IEnumerator JumpCooldown()
     {
         isJumping = true;

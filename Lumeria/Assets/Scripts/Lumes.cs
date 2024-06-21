@@ -8,7 +8,7 @@ public class Lumes : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player")) {
             //other.gameObject.GetComponent<Player>().AtivarPlanagem();
-            Debug.Log("Lume do Ar Coletado");
+            Debug.Log("Lume Coletado");
             Destroy(this.gameObject);
         }
     }
