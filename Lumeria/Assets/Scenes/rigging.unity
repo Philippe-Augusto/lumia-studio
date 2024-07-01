@@ -536,12 +536,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pontosDeMagia: 0
+  spawnPoint: {fileID: 0}
+  magicOrbPrefab: {fileID: 0}
   deathZone: 3
   jumpForce: 16
   moveSpeed: 8
   isGrounded: 0
   isJumping: 0
   animator: {fileID: 559882812}
+  glideForce: 2
+  glideGravityScale: 1.5
 --- !u!61 &554938248
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -894,6 +898,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1232457220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &759427127
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2484355473398947275, guid: a22e74b78a16617409b3071635746bf1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.933022
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484355473398947275, guid: a22e74b78a16617409b3071635746bf1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.646599
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484355473398947275, guid: a22e74b78a16617409b3071635746bf1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.19319
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484355473398947275, guid: a22e74b78a16617409b3071635746bf1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484355473398947275, guid: a22e74b78a16617409b3071635746bf1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484355473398947275, guid: a22e74b78a16617409b3071635746bf1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484355473398947275, guid: a22e74b78a16617409b3071635746bf1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484355473398947275, guid: a22e74b78a16617409b3071635746bf1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484355473398947275, guid: a22e74b78a16617409b3071635746bf1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484355473398947275, guid: a22e74b78a16617409b3071635746bf1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277973222248303741, guid: a22e74b78a16617409b3071635746bf1, type: 3}
+      propertyPath: m_Name
+      value: Gordon Frenesi
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a22e74b78a16617409b3071635746bf1, type: 3}
 --- !u!1 &814772907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,6 +1125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc71aa2c76e48254d862f2e436b0c965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheck: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!61 &975185568
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1594,6 +1659,63 @@ Transform:
   - {fileID: 1232457220}
   m_Father: {fileID: 1535571052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 19.907}
+--- !u!1001 &1714025777
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1170836701462808979, guid: 4d3ff3944581cd541a4f506ab4d0868c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.153608
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170836701462808979, guid: 4d3ff3944581cd541a4f506ab4d0868c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.16487
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170836701462808979, guid: 4d3ff3944581cd541a4f506ab4d0868c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.064117126
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170836701462808979, guid: 4d3ff3944581cd541a4f506ab4d0868c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170836701462808979, guid: 4d3ff3944581cd541a4f506ab4d0868c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170836701462808979, guid: 4d3ff3944581cd541a4f506ab4d0868c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170836701462808979, guid: 4d3ff3944581cd541a4f506ab4d0868c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170836701462808979, guid: 4d3ff3944581cd541a4f506ab4d0868c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170836701462808979, guid: 4d3ff3944581cd541a4f506ab4d0868c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1170836701462808979, guid: 4d3ff3944581cd541a4f506ab4d0868c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662218757909853470, guid: 4d3ff3944581cd541a4f506ab4d0868c, type: 3}
+      propertyPath: m_Name
+      value: Gordon Arqueiro
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4d3ff3944581cd541a4f506ab4d0868c, type: 3}
 --- !u!1 &1734085815
 GameObject:
   m_ObjectHideFlags: 0
@@ -1725,3 +1847,5 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 554938250}
+  - {fileID: 759427127}
+  - {fileID: 1714025777}
