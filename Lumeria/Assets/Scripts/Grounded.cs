@@ -14,7 +14,7 @@ public class Grounded : MonoBehaviour
     }
 
     void Update() {
-        player.isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+        player.isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.05f, groundLayer);
     }
 
     /*void OnTriggerEnter2D(Collider2D collider)

@@ -736,7 +736,6 @@ GameObject:
   - component: {fileID: 289291060400903515}
   - component: {fileID: 3368095406526552174}
   - component: {fileID: -4610847616955664817}
-  - component: {fileID: 2139475505183490566}
   m_Layer: 0
   m_Name: Gordon Frenesi
   m_TagString: Gordon
@@ -774,7 +773,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   speed: 3
+  animator: {fileID: 6868600199936055860}
   playerLife: {fileID: 0}
+  attackInterval: 1
+  visionRange: 10
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!61 &3368095406526552174
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -847,27 +852,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!95 &2139475505183490566
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7277973222248303741}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 74f186f01b718234aa5ac9d6b124d408, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8645339562738158454
 GameObject:
   m_ObjectHideFlags: 0

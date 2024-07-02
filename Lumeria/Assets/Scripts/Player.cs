@@ -47,10 +47,10 @@ public class Player : MonoBehaviour
     private void Move () {
         float inputAxis = Input.GetAxis("Horizontal");
 
-        if (inputAxis != 0) {
+        if (inputAxis != 0 && isGrounded) {
             //esta andando
             animator.SetBool("taAndando", true);
-        } else {
+        } else if (!isGrounded || inputAxis == 0) {
             //esta parado
             animator.SetBool("taAndando", false);
         }
@@ -107,6 +107,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButton("Jump") && rig.velocity.y < 0f && !isGrounded) { //ela esta no ar, e esta caindo
             Glide();
+            Debug.Log("Estou voando");
         } else {
             StopGliding();
         }
@@ -150,12 +151,17 @@ public class Player : MonoBehaviour
             isAttacking = true;
             animator.SetBool("taAtacando", true);
 
-            // Cria a orbe mágica
-            MagicOrb magicOrb = Instantiate(magicOrbPrefab, spawnPoint.position, spawnPoint.rotation);
+            Vector3 offset = new Vector3(0.5f, 0.3f, 0f);
 
+            if (transform.rotation.y < 0) {
+                offset.x *= -1;
+            }
+
+            // Cria a orbe mágica
+            MagicOrb magicOrb = Instantiate(magicOrbPrefab, spawnPoint.position + offset, spawnPoint.rotation);
             Vector3 direcaoLancamento;
 
-            if (transform.localScale.x > 0) {
+            if (transform.rotation.y >= 0) {
                 direcaoLancamento = Vector3.right;
             } else {
                 direcaoLancamento = Vector3.left;

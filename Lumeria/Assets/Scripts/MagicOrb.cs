@@ -5,13 +5,16 @@ using UnityEngine;
 public class MagicOrb : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float speed = 4.0f; // Velocidade de movimento do objeto mágico
+    [SerializeField] private float speed = 6.0f; // Velocidade de movimento do objeto mágico
     private Vector3 moveDirection;  // Direção de movimento do orbe
     GordonFrenesi gordon;
+    [SerializeField] private Transform positionOrb;
+
     void Update()
     {
-        // Movimenta o objeto na direção horizontal
-        transform.Translate(moveDirection * speed * Time.deltaTime);
+        Debug.Log("Valor do Move Direction: " + moveDirection);
+        positionOrb.position += moveDirection * speed * Time.deltaTime;
+        Destroy(gameObject, 4f);
     }
 
     public void SetDirection(Vector3 direction)

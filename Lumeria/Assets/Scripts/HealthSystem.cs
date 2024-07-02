@@ -52,10 +52,5 @@ public class HealthSystem : MonoBehaviour
         if (health <= 0) {
             player.Die();
         }
-
-        if (player.transform.position.y <= 5) {
-            GetComponent<Player>().enabled = false;
-            Destroy(gameObject);
-        }
     }
 }
